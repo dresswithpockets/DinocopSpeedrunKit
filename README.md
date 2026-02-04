@@ -20,11 +20,11 @@ The autosplitter requires LiveSplit to start a server on startup.
 
 ## Configuring
 
-Open `path/to/game/BepInEx/config/io.dresswithpockets.dinocop.autosplit.cfg` in Notepad or another text editor.
+Open `path/to/game/BepInEx/config/DinocopSpeedrunKit.Autosplit.cfg` in Notepad or another text editor.
 
 In this file you'll find a `[Splits]` section, underneath which you'll find some configurable fields:
 
-```toml
+```ini
 [Splits]
 
 ## Semicolon-separated list of scene to reset the timer on. This will send a timer reset to LiveSplit whenever ANY of the listed scene are (re)loaded. Some scene are loaded simultaneously, and may remain loaded for the runtime of the game.
@@ -60,7 +60,7 @@ transitions to the main menu, the autosplitter will send a `reset` to LiveSplit.
 
 For example, given the following configuration:
 
-```
+```ini
 Splits = (Event Event_IntroCinematic) (Dialogue Rec_intro) (Collectible Plunger) (Collectible LongueVue)
 ```
 

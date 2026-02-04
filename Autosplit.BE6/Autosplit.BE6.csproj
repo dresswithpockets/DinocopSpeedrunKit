@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <AssemblyName>io.dresswithpockets.dinocop.autosplit</AssemblyName>
+    <AssemblyName>DinocopSpeedrunKit.Autosplit</AssemblyName>
     <Product>Dinocop Autosplitter</Product>
     <Version>0.1.0</Version>
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
