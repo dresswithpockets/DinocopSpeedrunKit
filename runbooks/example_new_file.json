@@ -1,0 +1,130 @@
+{
+    "newGame": false,
+    "currentScene": "HOTEL_level",
+    "lastExit": 1000,
+    "currentRoomID": 1000,
+    "checkPointRespawn": true,
+    "currentCheckPoint": 12,
+    "currentCheckPointLevel": "",
+    "deathRestartThisLvl": "",
+    "deathCheckPoint": 0,
+    "backToPlayer": false,
+    "sceneToReload": "",
+    "currentPlayerPos": {
+        "x": 0.0,
+        "y": 0.0,
+        "z": 0.0
+    },
+    "currentPlayerRot": 0.0,
+    "currentHealth": 9.0,
+    "storyStates": [
+        "Arrival_intro",
+        "tuto_prog1Idle",
+        "tuto_prog2Idle",
+        "tuto_prog3Idle",
+        "tuto_prog4Idle",
+        "TutoAnalyse",
+        "tutorielDone",
+        "REC_intro",
+        "tutoPhone"
+    ],
+    "dailyStoryStates": [],
+    "cycleStoryStates": [],
+    "nextDayStoryStates": [],
+    "dailyLootDroppedTeresal": [],
+    "permaSavedObjects": [
+        "HOTEL_level_StandardHint_112426",
+        "HOTEL_level_StandardHint_110842",
+        "HOTEL_level_StandardHint_96362",
+        "Hint_intro_mammothJerky"
+    ],
+    "dailySavedObjects": [],
+    "cycleSavedObject": [],
+    "randomObjectState": [],
+    "partialSaves": [],
+    "boughtItems": [],
+    "nestFillStates": [],
+    "moneyCount": 0,
+    "moneyCountTotal": 0,
+    "crushedSodaTotal": 0,
+    "cheeseCount": 0,
+    "shieldMaterialsCount": [
+        0,
+        0,
+        0
+    ],
+    "shieldMaterialsMax": [
+        10,
+        0,
+        0
+    ],
+    "scentLearned": [
+        "Mammoth"
+    ],
+    "currentObjecToSniff": "",
+    "currentSelectedMaterial": "",
+    "currentInputIsKeyboardMouse": true,
+    "currentGrade": 0,
+    "currentTeresalLvl": 0,
+    "teresalXP": 0,
+    "currentXPAffiche": 0.0,
+    "griffeLvl": 0,
+    "attackLearned": false,
+    "sniffLearned": true,
+    "gobeLearned": false,
+    "swimLearned": false,
+    "equipements": [
+        "Detective_cap",
+        "",
+        "",
+        "",
+        "",
+        "Detective_coat",
+        "",
+        "",
+        ""
+    ],
+    "equipementOwned": [
+        "Detective_cap",
+        "Detective_coat"
+    ],
+    "collectibles": [],
+    "indices": [
+        "Indice_Partner",
+        "Indice_Partner_badge",
+        "Indice_Partner_nose",
+        "Indice_Partner_Borders",
+        "Indice_AnonymousCall_1",
+        "Indice_AnonymousCall",
+        "Indice_firstMeatCase",
+        "Indice_firstMeatCase_closed",
+        "Indice_Spip",
+        "Indice_Spip_info1"
+    ],
+    "indicesRead": [
+        "Indice_AnonymousCall",
+        "Indice_AnonymousCall_1",
+        "Indice_Partner",
+        "Indice_Partner_Borders"
+    ],
+    "indiceUIInited": [],
+    "choixMade": [
+        "REC_prog1_A"
+    ],
+    "dreams": [],
+    "objetsUniques": [
+        "Loupe",
+        "EnqueteLog",
+        "Watch"
+    ],
+    "scheduleChunks": [
+        "SC_Partner_01_matin",
+        "SC_Spip_02_reception"
+    ],
+    "currentObjectHold": [
+        "Loupe@0",
+        ""
+    ],
+    "curDay": 1,
+    "curDayTime": 302
+}
