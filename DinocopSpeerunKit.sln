@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autosplit.BE6", "Autosplit.BE6\Autosplit.BE6.csproj", "{5BB92968-19B6-499C-A431-75379F3944C2}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accessibility.BE6", "Accessibility.BE6\Accessibility.BE6.csproj", "{B3B1A073-964A-4552-9AB8-ECA9ADFD020A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{5BB92968-19B6-499C-A431-75379F3944C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BB92968-19B6-499C-A431-75379F3944C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BB92968-19B6-499C-A431-75379F3944C2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3B1A073-964A-4552-9AB8-ECA9ADFD020A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3B1A073-964A-4552-9AB8-ECA9ADFD020A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3B1A073-964A-4552-9AB8-ECA9ADFD020A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3B1A073-964A-4552-9AB8-ECA9ADFD020A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
