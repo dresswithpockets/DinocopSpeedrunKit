@@ -7,6 +7,17 @@
 1. Run the game once more to ensure the kit's configs are generated. Close it immediately.
 1. [Configure the plugin](#configuring)
 
+## LiveSplit Setup
+
+The autosplitter requires LiveSplit to start a server on startup.
+
+1. With LiveSplit open, right click anywhere in the main window
+1. Select "Settings"
+1. At the bottom of the Settings window, find the "LiveSplit" Server section
+1. Select "Start TCP Server" in the "Startup Behaviour" dropdown
+   - You can change the Server Port if you know that you need to. If you do, you must change the autosplitters configuration to match the new port. 
+1. Click "OK", then restart LiveSplit.
+
 ## Configuring
 
 Open `path/to/game/BepInEx/config/io.dresswithpockets.dinocop.autosplit.cfg` in Notepad or another text editor.
@@ -49,7 +60,7 @@ transitions to the main menu, the autosplitter will send a `reset` to LiveSplit.
 
 For example, given the following configuration:
 
-```toml
+```
 Splits = (Event Event_IntroCinematic) (Dialogue Rec_intro) (Collectible Plunger) (Collectible LongueVue)
 ```
 
