@@ -1,4 +1,17 @@
-Use AssetRipper to export the project. ScriptedAssets are located in `ExportedProject/Assets/MonoBehaviour/`
+Use AssetRipper to export the project.
+
+## Scenes
+
+Scenes are located in `ExportedProject/Assets/Scenes`
+
+To get a list of all unity scenes:
+```bash
+find . -type f -name "*.unity" -printf '%f\n'
+```
+
+## Collectibles
+
+ScriptedAssets are located in `ExportedProject/Assets/MonoBehaviour/`
 
 To get a list of assets which are Collectible instances, we need to filter for something that only a Collectible has. For example, we can filter by the value of `Object.m_Script` based on a known Collectible's value:
 
@@ -216,11 +229,3 @@ Yum
 ```
 
 Most of these assets map pretty obviously to their actual in-game display name. I haven't figured out a reliable way to get the actual name for each asset yet.
-
-
-The same process can be applied to other scriptable assets.
-
-**Scents**
-```bash
-
-```
