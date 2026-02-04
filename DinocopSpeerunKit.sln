@@ -1,10 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autosplit.BE5", "Autosplit.BE5\Autosplit.BE5.csproj", "{7568D59D-31B3-4DB6-8F82-1F7FB2C520D4}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autosplit.BE6", "Autosplit.BE6\Autosplit.BE6.csproj", "{5BB92968-19B6-499C-A431-75379F3944C2}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Autosplit.Core", "Autosplit.Core\Autosplit.Core.csproj", "{52A42C5C-E3C9-4BF6-9477-316777C7F7D3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -12,17 +8,9 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{7568D59D-31B3-4DB6-8F82-1F7FB2C520D4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7568D59D-31B3-4DB6-8F82-1F7FB2C520D4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7568D59D-31B3-4DB6-8F82-1F7FB2C520D4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7568D59D-31B3-4DB6-8F82-1F7FB2C520D4}.Release|Any CPU.Build.0 = Release|Any CPU
 		{5BB92968-19B6-499C-A431-75379F3944C2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{5BB92968-19B6-499C-A431-75379F3944C2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5BB92968-19B6-499C-A431-75379F3944C2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5BB92968-19B6-499C-A431-75379F3944C2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{52A42C5C-E3C9-4BF6-9477-316777C7F7D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{52A42C5C-E3C9-4BF6-9477-316777C7F7D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{52A42C5C-E3C9-4BF6-9477-316777C7F7D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{52A42C5C-E3C9-4BF6-9477-316777C7F7D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
