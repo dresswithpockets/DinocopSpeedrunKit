@@ -29,7 +29,6 @@ public static class Input
         eventPtr.time = (time >= 0 ? time : InputState.currentTime) + timeOffset;
         control.WriteValueIntoEvent(state, eventPtr);
         InputSystem.QueueEvent(eventPtr);
-        InputSystem.QueueDeltaStateEvent(control, state, time);
         if (!queueEventOnly)
             InputSystem.Update();
     }
