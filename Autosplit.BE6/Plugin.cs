@@ -130,7 +130,7 @@ public class Plugin : BaseUnityPlugin
 
     public static void HandleLevelSplit(Scene scene)
     {
-        Logger.LogInfo($"HandleLevelSplit: {scene.name}");
+        Logger.LogDebug($"HandleLevelSplit: {scene.name}");
         if (!TryCurrentSplit(SplitKind.Level, out var split))
             return;
 
@@ -142,7 +142,7 @@ public class Plugin : BaseUnityPlugin
 
     public static void HandleScentSplit(Collectible collectible)
     {
-        Logger.LogInfo($"HandleScentSplit: {collectible.name}");
+        Logger.LogDebug($"HandleScentSplit: {collectible.name}");
         if (!TryCurrentSplit(SplitKind.Scent, out var split))
             return;
 
@@ -154,7 +154,7 @@ public class Plugin : BaseUnityPlugin
 
     public static void HandleEventSplit(EventInstance @event)
     {
-        Logger.LogInfo($"HandleEventSplit: {@event.name}");
+        Logger.LogDebug($"HandleEventSplit: {@event.name}");
         if (!TryCurrentSplit(SplitKind.Event, out var split))
             return;
 
@@ -166,7 +166,7 @@ public class Plugin : BaseUnityPlugin
 
     public static void HandleCollectibleSplit(Collectible collectible)
     {
-        Logger.LogInfo($"HandleCollectibleSplit: {collectible.name}");
+        Logger.LogDebug($"HandleCollectibleSplit: {collectible.name}");
         if (!TryCurrentSplit(SplitKind.Collectible, out var split))
             return;
 
@@ -178,12 +178,12 @@ public class Plugin : BaseUnityPlugin
 
     public static void HandleDialogueSplit(Dialogue dialogue)
     {
-        Logger.LogInfo($"HandleDialogueSplit: {dialogue.name}");
+        Logger.LogDebug($"HandleDialogueSplit: {dialogue.name}");
         if (!TryCurrentSplit(SplitKind.Dialogue, out var split))
             return;
 
         var name = dialogue.name.Trim().Replace(" (Dialogue)", "");        
-        Logger.LogInfo($"                     trimmed name: {name}");
+        Logger.LogDebug($"                     trimmed name: {name}");
         if (split.Value != name)
             return;
 

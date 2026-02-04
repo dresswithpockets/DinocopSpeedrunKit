@@ -11,7 +11,7 @@ public static class Patches
     [HarmonyPrefix]
     private static bool PreAddCollectible(Collectible _collectible, float _value = 0.0f)
     {
-        Plugin.Logger.LogInfo($"PreAddCollectible: (name: {_collectible.name})");
+        Plugin.Logger.LogDebug($"PreAddCollectible: (name: {_collectible.name})");
         Plugin.HandleCollectibleSplit(_collectible);
         return true;
     }
@@ -20,7 +20,7 @@ public static class Patches
     [HarmonyPrefix]
     private static bool PreCheckLearnScent(Collectible _collectible, Inventaire __instance)
     {
-        Plugin.Logger.LogInfo($"PreCheckLearnScent: (name: {_collectible.type})");
+        Plugin.Logger.LogDebug($"PreCheckLearnScent: (name: {_collectible.type})");
         if (_collectible.cantLearn || __instance.scentsLearned == null ||
             __instance.scentsLearned.Contains(_collectible.type))
             return true;
@@ -34,7 +34,7 @@ public static class Patches
     private static bool PreHandleEvents(float _eventDelay, EventInstance __instance)
     {
         var events = string.Join(", ", __instance.events);
-        Plugin.Logger.LogInfo($"PreHandleEvents: (name: {__instance.name}, delay: {_eventDelay:.4f}, activeInHierarchy: {__instance.gameObject.activeInHierarchy}, events: [{events}])");
+        Plugin.Logger.LogDebug($"PreHandleEvents: (name: {__instance.name}, delay: {_eventDelay:.4f}, activeInHierarchy: {__instance.gameObject.activeInHierarchy}, events: [{events}])");
         Plugin.HandleEventSplit(__instance);
         return true;
     }
@@ -45,7 +45,7 @@ public static class Patches
     [HarmonyPrefix]
     private static bool PreTriggerExit(Exit __instance)
     {
-        Plugin.Logger.LogInfo($"PreTriggerExit: (exitingLevel: {LevelManager.instance.exitingLevel}, horraire: {__instance.horraire}, CestOuvert(): {__instance.CestOuvert()}, localMode: {__instance.localMode}, globalID: {__instance.globalID}, localID: {__instance.localID}, destinationID: {__instance.destinationID}, goToThisLevel: {__instance.goToThisLevel})");
+        Plugin.Logger.LogDebug($"PreTriggerExit: (exitingLevel: {LevelManager.instance.exitingLevel}, horraire: {__instance.horraire}, CestOuvert(): {__instance.CestOuvert()}, localMode: {__instance.localMode}, globalID: {__instance.globalID}, localID: {__instance.localID}, destinationID: {__instance.destinationID}, goToThisLevel: {__instance.goToThisLevel})");
         return true;
     }
 
@@ -53,7 +53,7 @@ public static class Patches
     [HarmonyPrefix]
     private static bool PreTestCollisionExit(GameObject other, Exit __instance, float ____safetyDelay)
     {
-        Plugin.Logger.LogInfo($"PreTestCollisionExit: (exitingLevel: {LevelManager.instance.exitingLevel}, horraire: {__instance.horraire}, CestOuvert(): {__instance.CestOuvert()}, localMode: {__instance.localMode}, globalID: {__instance.globalID}, localID: {__instance.localID}, destinationID: {__instance.destinationID}, goToThisLevel: {__instance.goToThisLevel}, collisionMode: {__instance.collisionMode}, canExit: {LevelManager.instance.canExit}, tag: {other.tag})");
+        Plugin.Logger.LogDebug($"PreTestCollisionExit: (exitingLevel: {LevelManager.instance.exitingLevel}, horraire: {__instance.horraire}, CestOuvert(): {__instance.CestOuvert()}, localMode: {__instance.localMode}, globalID: {__instance.globalID}, localID: {__instance.localID}, destinationID: {__instance.destinationID}, goToThisLevel: {__instance.goToThisLevel}, collisionMode: {__instance.collisionMode}, canExit: {LevelManager.instance.canExit}, tag: {other.tag})");
         return true;
     }
     
@@ -61,7 +61,7 @@ public static class Patches
     [HarmonyPrefix]
     private static bool PreStartDialogueDialogueManager(Dialogue _dialogue)
     {
-        Plugin.Logger.LogInfo($"PreStartDialogueDialogueManager: (name: {_dialogue})");
+        Plugin.Logger.LogDebug($"PreStartDialogueDialogueManager: (name: {_dialogue})");
         Plugin.HandleDialogueSplit(_dialogue);
         return true;
     }
@@ -70,7 +70,7 @@ public static class Patches
     [HarmonyPrefix]
     private static bool PreGiveEquipment(Equipement _equip, bool _big = false, bool _small = false, bool _faster = false)
     {
-        Plugin.Logger.LogInfo($"PreGiveEquipment: (name: {_equip})");
+        Plugin.Logger.LogDebug($"PreGiveEquipment: (name: {_equip})");
         return true;
     }
 
@@ -79,7 +79,7 @@ public static class Patches
     private static bool PreGiveCollectible(Collectible _collectible, float _value = 0.0f)
     {
         var name = GetScriptableObjectName(_collectible);
-        Plugin.Logger.LogInfo($"PreGiveCollectible: (name: {name})");
+        Plugin.Logger.LogDebug($"PreGiveCollectible: (name: {name})");
         return true;
     }
     
@@ -88,7 +88,7 @@ public static class Patches
     private static bool PreGiveScent(ScentAsset _scent)
     {
         var name = GetScriptableObjectName(_scent);
-        Plugin.Logger.LogInfo($"PreGiveScent: (name: {name})");
+        Plugin.Logger.LogDebug($"PreGiveScent: (name: {name})");
         return true;
     }
     
