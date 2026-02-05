@@ -1,6 +1,6 @@
 # Dinocop Speedrun Kit
 
-This kit includes an Accessibility plugin and an Autosplitter plugin for Dinocop.
+Dinocop mods to make speedrunning more accessible.
 
 ## Install
 
