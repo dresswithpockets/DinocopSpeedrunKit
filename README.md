@@ -1,13 +1,41 @@
 # Dinocop Speedrun Kit
 
+This kit includes an Accessibility plugin and an Autosplitter plugin for Dinocop.
+
+## Install
+
+In order to use the kit, you must have a Bleeding Edge version of BepInEx:
+
 1. Download & install [BepInEx 6.x](https://docs.bepinex.dev/master/articles/user_guide/installation/index.html)
-   1. You'll want to download a "Bleeding edge build" of BepInEx. This kit has been tested on build #753.
+    - You'll want to download a "[Bleeding edge build](https://builds.bepinex.dev/projects/bepinex_be)" of BepInEx. This
+      kit has been tested on build #753, so use that one if youre not sure.
+1. Run the game once to ensure BepInEx generates configs. Close it immediately.
+1. Download [the plugin](https://github.com/dresswithpockets/DinocopSpeedrunKit/releases) and place it in `path/to/game/BepInEx/plugins`
+1. Run the game once more to ensure the kit's configs are generated. Close it immediately.
+1. If you're using the autosplitter, [configure your splits](#configuring)
+
+## DinocopSpeedrunKit.Accessibility
+
+Adds some accessibility options to the main menu settings:
+
+- Automatically skip the intro cutscene on a new save
+- Automatically skip dialogue
+  - does not skip choices
+- Automatically pick up items by aiming at them
+  - only picks up collectibles like mold, dirt, cans - only when the player would normally be able to pick them up. 
+    
+## DinocopSpeedrunKit.Autosplit
+
+An autosplitter integration for LiveSplit.
+
+1. Download & install [BepInEx 6.x](https://docs.bepinex.dev/master/articles/user_guide/installation/index.html)
+   1. You'll want to download a "[Bleeding edge build](https://builds.bepinex.dev/projects/bepinex_be)" of BepInEx. This kit has been tested on build #753.
 1. Run the game once to ensure BepInEx generates configs. Close it immediately.
 1. Download [the plugin](https://github.com/dresswithpockets/DinocopSpeedrunKit/releases) and place it in `path/to/game/BepInEx/plugins`
 1. Run the game once more to ensure the kit's configs are generated. Close it immediately.
 1. [Configure the plugin](#configuring)
 
-## LiveSplit Setup
+### LiveSplit Setup
 
 The autosplitter requires LiveSplit to start a server on startup.
 
@@ -18,7 +46,7 @@ The autosplitter requires LiveSplit to start a server on startup.
    - You can change the Server Port if you know that you need to. If you do, you must change the autosplitters configuration to match the new port. 
 1. Click "OK", then restart LiveSplit.
 
-## Configuring
+### Configuring
 
 Open `path/to/game/BepInEx/config/DinocopSpeedrunKit.Autosplit.cfg` in Notepad or another text editor.
 
@@ -38,7 +66,7 @@ ResetOnScene = 01_Title_level
 Splits = 
 ```
 
-### `ResetOnScene`
+#### `ResetOnScene`
 
 The autosplitter will send a `reset` to LiveSplit if the current scene matches any of the scenes in the `ResetOnScene` 
 list. By default, this value is `01_Title_level`, which is the internal name for the title screen's Unity scene.
@@ -46,7 +74,7 @@ list. By default, this value is `01_Title_level`, which is the internal name for
 For example, if you are in the middle of a run and want to reset, you can just exit to main menu. Once the game 
 transitions to the main menu, the autosplitter will send a `reset` to LiveSplit.
 
-### `Splits`
+#### `Splits`
 
 `Splits` is configured as a space-separated list. Each Split in the list looks like `(Kind Value)` where:
 
@@ -77,11 +105,11 @@ Given that config, the autosplitter will perform the following splits *in order*
    
 <sup>1. at the moment each split must be completed in the order that they are configured.</sup>
 
-## Known Strings
+### Known Strings
 
 These are strings that have been datamined from the game, and are valid as split config values.
 
-### Collectibles
+#### Collectibles
 
 <details>
 <summary>Collectibles</summary>
@@ -254,20 +282,20 @@ These are strings that have been datamined from the game, and are valid as split
 
 </details>
 
-### Events
+#### Events
 
 | Internal Name        | Description                                                                     |
 |----------------------|---------------------------------------------------------------------------------|
 | Event_IntroCinematic | Triggers after the game fades from black, after you start a new save            | 
 | resetGame            | Triggers when the ending scene fades to black, before the title scene is loaded |
 
-### Dialogue
+#### Dialogue
 
 | Internal Name | Description                                                                |
 |---------------|----------------------------------------------------------------------------|
 | Rec_intro     | The cutscene that plays when you first enter the hotel lobby on a new save |
 
-### Levels / Unity Scenes
+#### Levels / Unity Scenes
 
 | Internal Name               | Description                                                        |
 |-----------------------------|--------------------------------------------------------------------|
@@ -336,7 +364,7 @@ These are strings that have been datamined from the game, and are valid as split
 | STUDIO_level                |                                                                    |
 | STUDIO_main                 |                                                                    |
 
-### Scents
+#### Scents
 
 | Internal Name     | Notes                             |
 |-------------------|-----------------------------------|
@@ -366,3 +394,4 @@ These are strings that have been datamined from the game, and are valid as split
 | Glue              |                                   |
 | RuchePiece        | Honey                             |
 | Danger            | Danger                            |
+
