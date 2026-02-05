@@ -39,13 +39,52 @@ public class Plugin : BaseUnityPlugin
             "When true, automatically fast forwards all dialogue as fast as the game allows. Does not skip dialogue choices.");
         AutoPickupCollectibles = Config.Bind("Accessibility", "AutoPickupCollectibles", false,
             "When true, automatically picks up collectibles when you aim at them");
+        
+        AutoSkipIntro.SettingChanged += AutoSkipIntroSettingChanged;
+        AutoSkipDialogue.SettingChanged += AutoSkipDialogueSettingChanged;
+        AutoPickupCollectibles.SettingChanged += AutoPickupCollectiblesSettingChanged;
+    }
 
-        Logger.LogDebug($"HandleAutoSkipDialogue");
+    private void Awake()
+    {
+        // TODO: change FOV
+
+        Logger.LogDebug($"Creating handler objects");
+        _settingsInjector = new GameObject();
+        _settingsInjector.AddComponent<SettingsInjector>();
+        _settingsInjector.transform.parent = gameObject.transform;
+        
+        HandleAutoSkipIntro(AutoSkipIntro.Value);
         HandleAutoSkipDialogue(AutoSkipDialogue.Value);
-        
-        // AutoSkipDialogue.SettingChanged += AutoSkipDialogueSettingChanged;
-        
-        // InputSystem.onEvent += OnInputSystemEvent;
+        HandleAutoPickupCollectibles(AutoPickupCollectibles.Value);
+
+        Logger.LogInfo($"Finished loading!");
+    }
+
+    private void OnDestroy()
+    {
+        // InputSystem.onEvent -= OnInputSystemEvent;
+        _autoSkipDialogueHarmony?.UnpatchSelf();
+        Destroy(_introSkipper);
+        Destroy(_settingsInjector);
+        Destroy(_autoCollector);
+    }
+
+    private void HandleAutoSkipIntro(bool skipIntro)
+    {
+        if (skipIntro)
+        {
+            if (_introSkipper) return;
+
+            _introSkipper = new GameObject();
+            _introSkipper.AddComponent<IntroSkipper>();
+            _introSkipper.transform.parent = gameObject.transform;
+        }
+        else
+        {
+            Destroy(_introSkipper);
+            _introSkipper = null;
+        }
     }
 
     private void HandleAutoSkipDialogue(bool skipDialogue)
@@ -63,67 +102,44 @@ public class Plugin : BaseUnityPlugin
         }
     }
 
-    // private void AutoSkipDialogueSettingChanged(object sender, EventArgs e)
-    // {
-    //     var args = (SettingChangedEventArgs)e;
-    //     var setting = (ConfigEntry<bool>)args.ChangedSetting;
-    //
-    //     HandleAutoSkipDialogue(setting.Value);
-    // }
-
-    // private void OnInputSystemEvent(InputEventPtr eventPtr, InputDevice device)
-    // {
-    //     if (!eventPtr.IsA<StateEvent>() && !eventPtr.IsA<DeltaStateEvent>())
-    //         return;
-    //
-    //     if (device is not Keyboard keyboard)
-    //         return;
-    //
-    //     if (keyboard[_reloadConfigShortcut.Value].wasPressedThisFrame)
-    //     {
-    //         Config.Reload();
-    //         Logger.LogInfo($"Config reloaded");
-    //     }
-    // }
-
-    private void Awake()
+    private void HandleAutoPickupCollectibles(bool autoPickup)
     {
-        // TODO: change FOV
-
-        Logger.LogDebug($"Creating Settings Injector");
-        _settingsInjector = new GameObject();
-        _settingsInjector.AddComponent<SettingsInjector>();
-        _settingsInjector.transform.parent = gameObject.transform;
-
-        _autoCollector = new GameObject();
-        _autoCollector.AddComponent<AutoCollector>();
-        _autoCollector.transform.parent = gameObject.transform;
-        
-        if (AutoSkipIntro.Value)
+        if (autoPickup)
         {
-            Logger.LogDebug($"Creating Intro Skipper");
-            _introSkipper = new GameObject();
-            _introSkipper.AddComponent<IntroSkipper>();
-            _introSkipper.transform.parent = gameObject.transform;
+            if (_autoCollector) return;
+
+            _autoCollector = new GameObject();
+            _autoCollector.AddComponent<AutoCollector>();
+            _autoCollector.transform.parent = gameObject.transform;
         }
-
-        Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
+        else
+        {
+            Destroy(_autoCollector);
+            _autoCollector = null;
+        }
     }
 
-    private void Update()
+    private void AutoSkipIntroSettingChanged(object sender, EventArgs e)
     {
-        // if (UnityEngine.Input.GetKeyDown(_reloadConfigShortcut.Value))
-        // {
-        //     Config.Reload();
-        // }
+        var args = (SettingChangedEventArgs)e;
+        var setting = (ConfigEntry<bool>)args.ChangedSetting;
+    
+        HandleAutoSkipIntro(setting.Value);
     }
 
-    private void OnDestroy()
+    private void AutoSkipDialogueSettingChanged(object sender, EventArgs e)
     {
-        // InputSystem.onEvent -= OnInputSystemEvent;
-        _autoSkipDialogueHarmony?.UnpatchSelf();
-        Destroy(_introSkipper);
-        Destroy(_settingsInjector);
-        Destroy(_autoCollector);
+        var args = (SettingChangedEventArgs)e;
+        var setting = (ConfigEntry<bool>)args.ChangedSetting;
+    
+        HandleAutoSkipDialogue(setting.Value);
+    }
+
+    private void AutoPickupCollectiblesSettingChanged(object sender, EventArgs e)
+    {
+        var args = (SettingChangedEventArgs)e;
+        var setting = (ConfigEntry<bool>)args.ChangedSetting;
+    
+        HandleAutoPickupCollectibles(setting.Value);
     }
 }

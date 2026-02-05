@@ -53,7 +53,6 @@ public class SettingsInjector : MonoBehaviour
     public void Awake()
     {
         Plugin.Logger.LogDebug($"SettingsInjector: Awake");
-        // DontDestroyOnLoad(gameObject);
         
         _harmony = Harmony.CreateAndPatchAll(typeof(SettingsInjector));
 
