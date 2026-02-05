@@ -28,13 +28,6 @@ Adds some accessibility options to the main menu settings:
 
 An autosplitter integration for LiveSplit.
 
-1. Download & install [BepInEx 6.x](https://docs.bepinex.dev/master/articles/user_guide/installation/index.html)
-   1. You'll want to download a "[Bleeding edge build](https://builds.bepinex.dev/projects/bepinex_be)" of BepInEx. This kit has been tested on build #753.
-1. Run the game once to ensure BepInEx generates configs. Close it immediately.
-1. Download [the plugin](https://github.com/dresswithpockets/DinocopSpeedrunKit/releases) and place it in `path/to/game/BepInEx/plugins`
-1. Run the game once more to ensure the kit's configs are generated. Close it immediately.
-1. [Configure the plugin](#configuring)
-
 ### LiveSplit Setup
 
 The autosplitter requires LiveSplit to start a server on startup.
