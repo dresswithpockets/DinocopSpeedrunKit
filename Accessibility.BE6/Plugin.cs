@@ -19,12 +19,13 @@ public class Plugin : BaseUnityPlugin
     private GameObject? _introSkipper;
     private GameObject? _settingsInjector;
     private GameObject? _autoCollector;
+    private GameObject? _holdToInteract;
     private Harmony? _autoSkipDialogueHarmony;
     
-    // private readonly ConfigEntry<Key> _reloadConfigShortcut;
     internal static ConfigEntry<bool> AutoSkipIntro = null!;
     internal static ConfigEntry<bool> AutoSkipDialogue = null!;
     internal static ConfigEntry<bool> AutoPickupCollectibles = null!;
+    internal static ConfigEntry<KeyCode> HoldToInteractKey = null!;
 
     public Plugin()
     {
@@ -39,7 +40,9 @@ public class Plugin : BaseUnityPlugin
             "When true, automatically fast forwards all dialogue as fast as the game allows. Does not skip dialogue choices.");
         AutoPickupCollectibles = Config.Bind("Accessibility", "AutoPickupCollectibles", false,
             "When true, automatically picks up collectibles when you aim at them");
-        
+        HoldToInteractKey = Config.Bind("Accessibility", "HoldToInteractKey", KeyCode.Mouse2,
+            "When held down, will simulate an Interact click every frame");
+
         AutoSkipIntro.SettingChanged += AutoSkipIntroSettingChanged;
         AutoSkipDialogue.SettingChanged += AutoSkipDialogueSettingChanged;
         AutoPickupCollectibles.SettingChanged += AutoPickupCollectiblesSettingChanged;
@@ -53,6 +56,10 @@ public class Plugin : BaseUnityPlugin
         _settingsInjector = new GameObject();
         _settingsInjector.AddComponent<SettingsInjector>();
         _settingsInjector.transform.parent = gameObject.transform;
+
+        _holdToInteract = new GameObject();
+        _holdToInteract.AddComponent<HoldToInteract>();
+        _holdToInteract.transform.parent = gameObject.transform;
         
         HandleAutoSkipIntro(AutoSkipIntro.Value);
         HandleAutoSkipDialogue(AutoSkipDialogue.Value);
@@ -63,8 +70,8 @@ public class Plugin : BaseUnityPlugin
 
     private void OnDestroy()
     {
-        // InputSystem.onEvent -= OnInputSystemEvent;
         _autoSkipDialogueHarmony?.UnpatchSelf();
+        Destroy(_holdToInteract);
         Destroy(_introSkipper);
         Destroy(_settingsInjector);
         Destroy(_autoCollector);
