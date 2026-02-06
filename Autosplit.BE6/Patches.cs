@@ -7,6 +7,26 @@ namespace Autosplit;
 [SuppressMessage("ReSharper", "InconsistentNaming")]
 public static class Patches
 {
+    [HarmonyPatch(typeof(StoryState), "HandleSave")]
+    [HarmonyPrefix]
+    private static bool PreHandleSave(Save _save)
+    {
+        Plugin.Logger.LogDebug($"PreHandleSave: (savedKey: {_save.savedKey}, type: {_save.type})");
+        if (_save.type == Save.SaveType.permanent)
+            Plugin.HandlePermanentSave(_save);
+
+        return true;
+    }
+    
+    [HarmonyPatch(typeof(EconomyManager), "GiveObjetUniqueToPlayer")]
+    [HarmonyPrefix]
+    private static bool PreGiveObjetUniqueToPlayer(ObjetUnique objetUnique, bool _faster)
+    {
+        Plugin.Logger.LogDebug($"PreGiveObjetUniqueToPlayer: (name: {objetUnique.name})");
+        Plugin.HandleUniqueObjectSplit(objetUnique);
+        return true;
+    }
+    
     [HarmonyPatch(typeof(Inventaire), "AddCollectible")]
     [HarmonyPrefix]
     private static bool PreAddCollectible(Collectible _collectible, float _value = 0.0f)
@@ -38,24 +58,6 @@ public static class Patches
         Plugin.HandleEventSplit(__instance);
         return true;
     }
-
-    // These are experimental and may be useful in the future (I suspect that the Lab level transition is an Exit)
-#if false
-    [HarmonyPatch(typeof(Exit), "TriggerExit")]
-    [HarmonyPrefix]
-    private static bool PreTriggerExit(Exit __instance)
-    {
-        Plugin.Logger.LogDebug($"PreTriggerExit: (exitingLevel: {LevelManager.instance.exitingLevel}, horraire: {__instance.horraire}, CestOuvert(): {__instance.CestOuvert()}, localMode: {__instance.localMode}, globalID: {__instance.globalID}, localID: {__instance.localID}, destinationID: {__instance.destinationID}, goToThisLevel: {__instance.goToThisLevel})");
-        return true;
-    }
-
-    [HarmonyPatch(typeof(Exit), "TestCollision")]
-    [HarmonyPrefix]
-    private static bool PreTestCollisionExit(GameObject other, Exit __instance, float ____safetyDelay)
-    {
-        Plugin.Logger.LogDebug($"PreTestCollisionExit: (exitingLevel: {LevelManager.instance.exitingLevel}, horraire: {__instance.horraire}, CestOuvert(): {__instance.CestOuvert()}, localMode: {__instance.localMode}, globalID: {__instance.globalID}, localID: {__instance.localID}, destinationID: {__instance.destinationID}, goToThisLevel: {__instance.goToThisLevel}, collisionMode: {__instance.collisionMode}, canExit: {LevelManager.instance.canExit}, tag: {other.tag})");
-        return true;
-    }
     
     [HarmonyPatch(typeof(DialogueManager), "StartDialogue")]
     [HarmonyPrefix]
@@ -71,6 +73,25 @@ public static class Patches
     private static bool PreGiveEquipment(Equipement _equip, bool _big = false, bool _small = false, bool _faster = false)
     {
         Plugin.Logger.LogDebug($"PreGiveEquipment: (name: {_equip})");
+        Plugin.HandleEquipmentSplit(_equip);
+        return true;
+    }
+
+    // These are experimental and may be useful in the future (I suspect that the Lab level transition is an Exit)
+#if true
+    [HarmonyPatch(typeof(Exit), "TriggerExit")]
+    [HarmonyPrefix]
+    private static bool PreTriggerExit(Exit __instance)
+    {
+        Plugin.Logger.LogDebug($"PreTriggerExit: (exitingLevel: {LevelManager.instance.exitingLevel}, horraire: {__instance.horraire}, CestOuvert(): {__instance.CestOuvert()}, localMode: {__instance.localMode}, globalID: {__instance.globalID}, localID: {__instance.localID}, destinationID: {__instance.destinationID}, goToThisLevel: {__instance.goToThisLevel})");
+        return true;
+    }
+
+    [HarmonyPatch(typeof(Exit), "TestCollision")]
+    [HarmonyPrefix]
+    private static bool PreTestCollisionExit(GameObject other, Exit __instance, float ____safetyDelay)
+    {
+        Plugin.Logger.LogDebug($"PreTestCollisionExit: (exitingLevel: {LevelManager.instance.exitingLevel}, horraire: {__instance.horraire}, CestOuvert(): {__instance.CestOuvert()}, localMode: {__instance.localMode}, globalID: {__instance.globalID}, localID: {__instance.localID}, destinationID: {__instance.destinationID}, goToThisLevel: {__instance.goToThisLevel}, collisionMode: {__instance.collisionMode}, canExit: {LevelManager.instance.canExit}, tag: {other.tag})");
         return true;
     }
 

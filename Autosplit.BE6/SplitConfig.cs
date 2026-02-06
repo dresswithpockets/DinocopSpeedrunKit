@@ -9,6 +9,9 @@ namespace Autosplit;
 public enum SplitKind
 {
     Collectible,
+    UniqueObject,
+    PermanentSave,
+    Outfit,
     Scent,
     Level,
     Event,
@@ -39,6 +42,9 @@ public record Split(string Original, SplitKind Kind, string Value)
             kind = sides[0] switch
             {
                 "C" => SplitKind.Collectible,
+                "U" => SplitKind.UniqueObject,
+                "P" => SplitKind.PermanentSave,
+                "O" => SplitKind.Outfit,
                 "S" => SplitKind.Scent,
                 "L" => SplitKind.Level,
                 "E" => SplitKind.Event,

@@ -77,12 +77,15 @@ transitions to the main menu, the autosplitter will send a `reset` to LiveSplit.
   - `Collectible` or `C`
   - `Level` or `L`
   - `Dialogue` or `D`
+  - `UniqueObject` or `U`
+  - `PermanentSave` or `P`
+  - `Outfit` or `O`
 - `Value` is a string that the autosplitter will match against based on the `Kind` chosen.
 
 Heres an example configuration you might use for an any% route:
 
 ```ini
-Splits = (Event Event_IntroCinematic) (Dialogue Rec_intro) (Collectible Plunger) (Collectible LongueVue) (Event resetGame)
+Splits = (E Event_IntroCinematic) (D Rec_intro) (U Plunger) (D BeatingAfter) (U LongueVue) (E resetGame)
 ```
 
 Given that config, the autosplitter will perform the following splits *in order*<sup>1</sup>:
@@ -90,203 +93,229 @@ Given that config, the autosplitter will perform the following splits *in order*
    - N.B. this is the game's internal name for the event that triggers after you start a new game.
 1. on any Dialogue named `Rec_intro`
    - N.B. this is the game's internal name for the cutscene that plays when you first enter the hotel
-1. on any Collectible named `Plunger`
-1. on any Collectible named `LongueVue`
+1. on any Unique Object named `Plunger`
+1. on any Dialogue named `BeatingAfter`
+   - N.B. this is the game's internal name for the cutscene that plays when you first wake up after the ghost ambush 
+1. on any Unique Object named `LongueVue`
    - N.B. this is the game's internal name for the Binoculars
 1. on any Event named `resetGame`
    - N.B. this is the game's internal name for the event that triggers after the end scene fades to black.
-   
+    
 <sup>1. at the moment each split must be completed in the order that they are configured.</sup>
 
 ### Known Strings
 
 These are strings that have been datamined from the game, and are valid as split config values.
 
+#### Unique Objects
+
+| Internal Name | Description          |
+|---------------|----------------------|
+| Loupe         | The magnifying glass |
+| EnqueteLog    | The secret journal   |
+| Watch         |                      |
+| NewsPaper     |                      |
+| Plunger       |                      |
+| LongueVue     | The binoculars       |
+| Flashlight    |                      |
+
 #### Collectibles
 
 <details>
 <summary>Collectibles</summary>
 
-| Internal Name          | Description |
-|------------------------|--------------|
-| AnimeFigureA           |              |
-| AnimeFigureB           |              |
-| AnimeFigureC           |              |
-| BagOfWires             |              |
-| BeerCap                |              |
-| BeerMug                |              |
-| Bobette_A              |              |
-| Bolt                   |              |
-| Botch                  |              |
-| BrontoMeat             |              |
-| BrontoPosterPiece      |              |
-| BrothersCloth          |              |
-| BubbleGum              |              |
-| BubbleWrap             |              |
-| Bug                    |              |
-| Cadre_A                |              |
-| Cadre_B                |              |
-| Cadre_C                |              |
-| CameraPhoto            |              |
-| CarKey                 |              |
-| CarnivalTicket         |              |
-| CarnivalTicket_super   |              |
-| Carotte                |              |
-| CatFur                 |              |
-| CD_rom                 |              |
-| CeraLetter             |              |
-| Chandail_A             |              |
-| Chandail_B             |              |
-| Chandail_C             |              |
-| Chandail_D             |              |
-| chaudronCover          |              |
-| Cheese                 |              |
-| CheeseCrust            |              |
-| Cheetos                |              |
-| Chicken                |              |
-| CigYoshi               |              |
-| ClawPatrolPlush        |              |
-| CleanTowel             |              |
-| Clou                   |              |
-| Coconut                |              |
-| Cocotte                |              |
-| CoffeeCupSpecial       |              |
-| CoffeeGear             |              |
-| CoffeeMug              |              |
-| Coin                   |              |
-| ComputerPart           |              |
-| Concombre              |              |
-| CrushedSoda            |              |
-| Danger                 |              |
-| DesertMineral          |              |
-| Dirt                   |              |
-| DirtyMoney             |              |
-| DirtyTowel             |              |
-| Documentaire           |              |
-| Donut                  |              |
-| DSRT_scentE            |              |
-| Dumbell_big            |              |
-| Dumbell_small          |              |
-| FakeCheese             |              |
-| Flashlight             |              |
-| FluffPile              |              |
-| Folliage               |              |
-| FoodWaste              |              |
-| ForestCreepA           |              |
-| FridgeKey_0            |              |
-| Garbage                |              |
-| Gem_blue               |              |
-| Gem_gold               |              |
-| Gem_green              |              |
-| Gem_red                |              |
-| GhostCheese            |              |
-| Glass                  |              |
-| Glue                   |              |
-| GoldenBall             |              |
-| Honey                  |              |
-| hotelPan_cover         |              |
-| Jam                    |              |
-| Junk                   |              |
-| Key_Survivaliste       |              |
-| kitchenPermit          |              |
-| Laitue                 |              |
-| LichenA                |              |
-| LifeFruit              |              |
-| LobbyCandy             |              |
-| LongueVue              |              |
-| louche                 |              |
-| Loupe                  |              |
-| MagicMushroom          |              |
-| Mammoth                |              |
-| Meat                   |              |
-| MeatBag                |              |
-| Metal                  |              |
-| MG_GemBlue             |              |
-| MG_GemGreen            |              |
-| MG_GemRed              |              |
-| Mold                   |              |
-| MoleRatKid             |              |
-| MoneyBill              |              |
-| MoonFlower             |              |
-| MushroomB              |              |
-| MushroomCapA           |              |
-| MysteryScent           |              |
-| NenuphareFlower        |              |
-| NewsPaper              |              |
-| Nigesaurus             |              |
-| NutsNBolt              |              |
-| Ocarinut_pieces        |              |
-| Oil                    |              |
-| PaperBall              |              |
-| ParaCrumbs             |              |
-| Parfum                 |              |
-| Pebble                 |              |
-| PickleChip             |              |
-| PickleChip_Bag         |              |
-| Pizza                  |              |
-| Plunger                |              |
-| PoultryColis           |              |
-| Rat                    |              |
-| RedPotion              |              |
-| RoomKey100             |              |
-| RoomKey101             |              |
-| RoomKey103             |              |
-| RoomKey104             |              |
-| RoomKey105             |              |
-| RoomKey107             |              |
-| RoomKey200             |              |
-| RoomKey201             |              |
-| RoomKey202             |              |
-| RoomKey203             |              |
-| RoomKey204             |              |
-| RoomKey205             |              |
-| RoomKey206             |              |
-| RoomKey207             |              |
-| RoomKey208             |              |
-| RoomKey209             |              |
-| RoomKey_basement       |              |
-| RoomKey_Janitor        |              |
-| RootA                  |              |
-| RubberChicken          |              |
-| RuchePiece             |              |
-| SecretDetergent        |              |
-| SeedA                  |              |
-| Shit                   |              |
-| ShitGold               |              |
-| Skill_Dash             |              |
-| Skill_Nest             |              |
-| Skill_RedSpeed         |              |
-| SmallStep              |              |
-| Sock_A                 |              |
-| Soda                   |              |
-| SpecialCoin            |              |
-| SpiderWeb              |              |
-| SteveAutograph         |              |
-| SteveLetter            |              |
-| Stone                  |              |
-| Straw                  |              |
-| SunFlower              |              |
-| Tomate                 |              |
-| TreeFruit              |              |
-| Water                  |              |
-| WifiAdapter            |              |
-| XP50                   |              |
-| Yum                    |              |
+| Internal Name          | Description   |
+|------------------------|---------------|
+| AnimeFigureA           |               |
+| AnimeFigureB           |               |
+| AnimeFigureC           |               |
+| BagOfWires             |               |
+| BeerCap                |               |
+| BeerMug                |               |
+| Bobette_A              |               |
+| Bolt                   |               |
+| Botch                  |               |
+| BrontoMeat             |               |
+| BrontoPosterPiece      |               |
+| BrothersCloth          |               |
+| BubbleGum              |               |
+| BubbleWrap             |               |
+| Bug                    |               |
+| Cadre_A                |               |
+| Cadre_B                |               |
+| Cadre_C                |               |
+| CameraPhoto            |               |
+| CarKey                 |               |
+| CarnivalTicket         |               |
+| CarnivalTicket_super   |               |
+| Carotte                |               |
+| CatFur                 |               |
+| CD_rom                 |               |
+| CeraLetter             |               |
+| Chandail_A             |               |
+| Chandail_B             |               |
+| Chandail_C             |               |
+| Chandail_D             |               |
+| chaudronCover          |               |
+| Cheese                 |               |
+| CheeseCrust            |               |
+| Cheetos                |               |
+| Chicken                |               |
+| CigYoshi               |               |
+| ClawPatrolPlush        |               |
+| CleanTowel             |               |
+| Clou                   |               |
+| Coconut                |               |
+| Cocotte                |               |
+| CoffeeCupSpecial       |               |
+| CoffeeGear             |               |
+| CoffeeMug              |               |
+| Coin                   |               |
+| ComputerPart           |               |
+| Concombre              |               |
+| CrushedSoda            |               |
+| Danger                 |               |
+| DesertMineral          |               |
+| Dirt                   |               |
+| DirtyMoney             |               |
+| DirtyTowel             |               |
+| Documentaire           |               |
+| Donut                  |               |
+| DSRT_scentE            |               |
+| Dumbell_big            |               |
+| Dumbell_small          |               |
+| FakeCheese             |               |
+| Flashlight             |               |
+| FluffPile              |               |
+| Folliage               |               |
+| FoodWaste              |               |
+| ForestCreepA           |               |
+| FridgeKey_0            |               |
+| Garbage                |               |
+| Gem_blue               |               |
+| Gem_gold               |               |
+| Gem_green              |               |
+| Gem_red                |               |
+| GhostCheese            |               |
+| Glass                  |               |
+| Glue                   |               |
+| GoldenBall             |               |
+| Honey                  |               |
+| hotelPan_cover         |               |
+| Jam                    |               |
+| Junk                   |               |
+| Key_Survivaliste       |               |
+| kitchenPermit          |               |
+| Laitue                 |               |
+| LichenA                |               |
+| LifeFruit              |               |
+| LobbyCandy             |               |
+| LongueVue              |               |
+| louche                 |               |
+| Loupe                  |               |
+| MagicMushroom          |               |
+| Mammoth                |               |
+| Meat                   |               |
+| MeatBag                |               |
+| Metal                  |               |
+| MG_GemBlue             |               |
+| MG_GemGreen            |               |
+| MG_GemRed              |               |
+| Mold                   |               |
+| MoleRatKid             |               |
+| MoneyBill              |               |
+| MoonFlower             |               |
+| MushroomB              |               |
+| MushroomCapA           |               |
+| MysteryScent           |               |
+| NenuphareFlower        |               |
+| NewsPaper              |               |
+| Nigesaurus             |               |
+| NutsNBolt              |               |
+| Ocarinut_pieces        |               |
+| Oil                    |               |
+| PaperBall              |               |
+| ParaCrumbs             |               |
+| Parfum                 |               |
+| Pebble                 |               |
+| PickleChip             |               |
+| PickleChip_Bag         |               |
+| Pizza                  |               |
+| Plunger                |               |
+| PoultryColis           |               |
+| Rat                    |               |
+| RedPotion              |               |
+| RoomKey100             |               |
+| RoomKey101             |               |
+| RoomKey103             |               |
+| RoomKey104             |               |
+| RoomKey105             |               |
+| RoomKey107             |               |
+| RoomKey200             |               |
+| RoomKey201             |               |
+| RoomKey202             |               |
+| RoomKey203             |               |
+| RoomKey204             |               |
+| RoomKey205             |               |
+| RoomKey206             |               |
+| RoomKey207             |               |
+| RoomKey208             |               |
+| RoomKey209             |               |
+| RoomKey_basement       |               |
+| RoomKey_Janitor        |               |
+| RootA                  |               |
+| RubberChicken          |               |
+| RuchePiece             |               |
+| SecretDetergent        |               |
+| SeedA                  |               |
+| Shit                   |               |
+| ShitGold               |               |
+| Skill_Dash             |               |
+| Skill_Nest             |               |
+| Skill_RedSpeed         |               |
+| SmallStep              |               |
+| Sock_A                 |               |
+| Soda                   |               |
+| SpecialCoin            |               |
+| SpiderWeb              |               |
+| SteveAutograph         |               |
+| SteveLetter            |               |
+| Stone                  |               |
+| Straw                  |               |
+| SunFlower              |               |
+| Tomate                 |               |
+| TreeFruit              |               |
+| Water                  |               |
+| WifiAdapter            |               |
+| XP50                   |               |
+| Yum                    |               |
 
 </details>
 
 #### Events
 
-| Internal Name        | Description                                                                     |
-|----------------------|---------------------------------------------------------------------------------|
-| Event_IntroCinematic | Triggers after the game fades from black, after you start a new save            | 
-| resetGame            | Triggers when the ending scene fades to black, before the title scene is loaded |
+| Internal Name          | Description                                                                         |
+|------------------------|-------------------------------------------------------------------------------------|
+| Event_IntroCinematic   | after the game fades from black, after you start a new save                         |
+| AnalyseConvention_done | when you've analyzed all 12 spots in the convention                                 |
+| Kitchen_AnalyseDone    | when you've analyzed all 17 spots in the kitchen                                    |
+| showPoem               | when the torn poem is shown to the Bronto in the garden                             |
+| showNewsPaper          | when the newspaper is shown (such as when talking to Ryamond or one of the Brontos) |
+| triggerDate            | when Bert asks you out on a date                                                    |
+| resetGame              | when the ending scene fades to black, before the title scene is loaded              |
 
 #### Dialogue
 
-| Internal Name | Description                                                                |
-|---------------|----------------------------------------------------------------------------|
-| Rec_intro     | The cutscene that plays when you first enter the hotel lobby on a new save |
+| Internal Name                     | Description                                                           |
+|-----------------------------------|-----------------------------------------------------------------------|
+| Rec_intro                         | Cutscene when you first enter the hotel lobby on a new save           |
+| Butcher_room_objet2_brokenPlastic | Dialogue when you identify the broken phones in Room 205              |
+| GreenBook_choixC                  | Dialogue when you read the password page from the book in the library |
+| BeatingAfter                      | Dialogue with the butcher when waking up after the ghost ambush       |
+| Carmen_reading_Loupe              | Dialogue when reading Carmen's book in the library                    |
+| Autograph_longueVue               | Dialogue when spying on Carmen's group in the lobby                   |
+| Pachy_Bar_newsPaper               | Dialogue when spying on Bert at the bar                               |
+| Pachy_Date                        | Dialogue when starting the date with bert                             |
 
 #### Levels / Unity Scenes
 
@@ -388,3 +417,55 @@ These are strings that have been datamined from the game, and are valid as split
 | RuchePiece        | Honey                             |
 | Danger            | Danger                            |
 
+#### Outfits
+
+| Internal Name            | Description |
+|--------------------------|-------------|
+| BasicRing                |             |
+| Beautifull_foulard       |             |
+| CatEar                   |             |
+| classy_shirt             |             |
+| classy_shoes             |             |
+| Detective_cap            |             |
+| Detective_coat           |             |
+| DetectiveBoots           |             |
+| dinocap_A                |             |
+| DuckFloater              |             |
+| Fargo_coat               |             |
+| Fargo_hat                |             |
+| Foozeball_shirt          |             |
+| GlassesAviateur          |             |
+| GlowInTheDark            |             |
+| GothBoot                 |             |
+| heisenberg_hat           |             |
+| JnMShirt                 |             |
+| LeggingGold              |             |
+| Leopard_coat             |             |
+| MiniShirt                |             |
+| night_bonet              |             |
+| night_robe               |             |
+| night_shoes              |             |
+| Pach_BurgundyShirt       |             |
+| Pach_GreenCap            |             |
+| Pach_RoundGlasses        |             |
+| Paco_BrotherHat          |             |
+| PantsA                   |             |
+| PrincessCrown            |             |
+| Raptor_janitor_salopette |             |
+| Rat_Body                 |             |
+| Rat_Feet                 |             |
+| Rat_Hands                |             |
+| Rat_Head                 |             |
+| RunningShoes_A           |             |
+| RunningShoes_B           |             |
+| RunningShoes_C           |             |
+| Sheriff_boots            |             |
+| Sheriff_hat              |             |
+| Shirt_HeavyMetal         |             |
+| ShortB                   |             |
+| SilverWatch              |             |
+| SkullRing                |             |
+| Steve_bracelet           |             |
+| Steve_glasses            |             |
+| Tablier_kitchen          |             |
+| Tutu                     |             |

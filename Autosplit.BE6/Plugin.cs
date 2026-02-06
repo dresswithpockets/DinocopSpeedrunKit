@@ -164,6 +164,30 @@ public class Plugin : BaseUnityPlugin
         Split();
     }
 
+    public static void HandlePermanentSave(Save save)
+    {
+        Logger.LogDebug($"HandlePermanentSave: {save.savedKey}");
+        if (!TryCurrentSplit(SplitKind.PermanentSave, out var split))
+            return;
+
+        if (split.Value != save.savedKey)
+            return;
+
+        Split();
+    }
+
+    public static void HandleUniqueObjectSplit(ObjetUnique objetUnique)
+    {
+        Logger.LogDebug($"HandleUniqueObjectSplit: {objetUnique.name}");
+        if (!TryCurrentSplit(SplitKind.UniqueObject, out var split))
+            return;
+
+        if (split.Value != objetUnique.name)
+            return;
+
+        Split();
+    }
+
     public static void HandleCollectibleSplit(Collectible collectible)
     {
         Logger.LogDebug($"HandleCollectibleSplit: {collectible.name}");
@@ -185,6 +209,18 @@ public class Plugin : BaseUnityPlugin
         var name = dialogue.name.Trim().Replace(" (Dialogue)", "");        
         Logger.LogDebug($"                     trimmed name: {name}");
         if (split.Value != name)
+            return;
+
+        Split();
+    }
+
+    public static void HandleEquipmentSplit(Equipement equipment)
+    {
+        Logger.LogDebug($"HandleEquipmentSplit: {equipment.name}");
+        if (!TryCurrentSplit(SplitKind.Outfit, out var split))
+            return;
+
+        if (split.Value != equipment.name)
             return;
 
         Split();
