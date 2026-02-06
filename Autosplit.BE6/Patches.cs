@@ -54,7 +54,7 @@ public static class Patches
     private static bool PreHandleEvents(float _eventDelay, EventInstance __instance)
     {
         var events = string.Join(", ", __instance.events);
-        Plugin.Logger.LogDebug($"PreHandleEvents: (name: {__instance.name}, delay: {_eventDelay:.4f}, activeInHierarchy: {__instance.gameObject.activeInHierarchy}, events: [{events}])");
+        Plugin.Logger.LogDebug($"PreHandleEvents: (name: {__instance.name}, delay: {_eventDelay:#0.####}, activeInHierarchy: {__instance.gameObject.activeInHierarchy}, events: [{events}])");
         Plugin.HandleEventSplit(__instance);
         return true;
     }
