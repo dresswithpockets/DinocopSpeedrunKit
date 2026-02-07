@@ -22,8 +22,9 @@ Adds some accessibility options to the main menu settings:
 - Automatically skip dialogue
   - does not skip choices
 - Automatically pick up items by aiming at them
-  - only picks up collectibles like mold, dirt, cans - only when the player would normally be able to pick them up. 
-    
+  - picks up collectibles like money, mold, cans - only when the player would normally be able to pick them up.
+- Automatically interact by holding down a button/key
+
 ## DinocopSpeedrunKit.Autosplit
 
 An autosplitter integration for LiveSplit.
