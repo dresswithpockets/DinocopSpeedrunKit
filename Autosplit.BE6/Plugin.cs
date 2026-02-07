@@ -76,6 +76,7 @@ public class Plugin : BaseUnityPlugin
         Logger.LogInfo($"Plugin {MyPluginInfo.PLUGIN_GUID} is loaded!");
 
         SceneManager.sceneLoaded += OnSceneLoaded;
+        SceneManager.sceneUnloaded += OnSceneUnloaded;
     }
 
     private void Update()
@@ -100,6 +101,11 @@ public class Plugin : BaseUnityPlugin
     {
         Logger.LogDebug($"OnSceneLoaded: (name: {scene.name}, mode: {mode})");
         HandleLevelSplit(scene);
+    }
+
+    private void OnSceneUnloaded(Scene scene)
+    {
+        Logger.LogDebug($"OnSceneUnloaded: (name: {scene.name})");
     }
 
     private static bool TryCurrentSplit(SplitKind kind, [NotNullWhen(true)] out Split? split)
