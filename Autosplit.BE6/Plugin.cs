@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using BepInEx;
@@ -24,22 +25,41 @@ public class Plugin : BaseUnityPlugin
     private static ConfigEntry<int> _liveSplitPort = null!;
     // private static ConfigEntry<bool> _initGameTime = null!;
 
-    private static ConfigEntry<string> _resetOnScene = null!;
+    private static ConfigEntry<HashSet<string>> _resetOnScene = null!;
     private static ConfigEntry<SplitConfig> _splits = null!;
     
     private static uint _splitIndex = 0;
+
+    private static bool IsLive => _splitIndex > 0 && _splitIndex < _splits.Value.Splits.Length;
 
     public Plugin()
     {
         Logger = base.Logger;
         
+        TomlTypeConverter.AddConverter(typeof(SplitConfig), new TypeConverter
+        {
+            ConvertToObject = (input, type) =>
+            {
+                Debug.Assert(type == typeof(HashSet<string>));
+
+                return input.Split(";").ToHashSet();
+            },
+            ConvertToString = (input, type) =>
+            {
+                Debug.Assert(type == typeof(HashSet<string>));
+                Debug.Assert(input is HashSet<string>);
+
+                return string.Join("; ", (HashSet<string>)input);
+            },
+        });
+        
         SplitConfig.AddConverters();
         
         _liveSplitAddress = Config.Bind("LiveSplit", "Address", "localhost", "The LiveSplit server address to use.");
         _liveSplitPort = Config.Bind("LiveSplit", "Port", 16834, "The LiveSplit Server port to use.");
-        // _initGameTime = Config.Bind("LiveSplit", "UseGameTime", true, "Whether or not to send game time info to LiveSplit.");
+        // _initGameTime = Config.Bind("LiveSplit", "UseGameTime", true, "Whether to send game time info to LiveSplit.");
 
-        _resetOnScene = Config.Bind("Splits", "ResetOnScene", "01_Title_level",
+        _resetOnScene = Config.Bind<HashSet<string>>("Splits", "ResetOnScene", ["01_Title_level"],
             "Semicolon-separated list of scene to reset the timer on. This will send a timer reset to LiveSplit whenever ANY of the listed scene are (re)loaded. Some scene are loaded simultaneously, and may remain loaded for the runtime of the game.");
         _splits = Config.Bind("Splits", "Splits", new SplitConfig([]), "Configure which events will trigger LiveSplit splits");
 
@@ -81,13 +101,13 @@ public class Plugin : BaseUnityPlugin
 
     private void Update()
     {
-        if (_splitIndex > 0 && _resetOnScene.Value.Split(';').Contains(SceneManager.GetActiveScene().name))
+        if (IsLive && _resetOnScene.Value.Contains(SceneManager.GetActiveScene().name))
         {
             Logger.LogInfo($"Reset Scene was triggered, resetting");
             _client?.Reset();
             _splitIndex = 0;
         }
-        
+
         // TODO: try handling RTA/IGT.
     }
 
