@@ -105,7 +105,9 @@ public class SettingsInjector : MonoBehaviour
         option.name = optionName;
 
         var toggle = option.GetComponentInChildren<Toggle>();
-        toggle.onValueChanged.RemoveAllListeners();
+        toggle.name = $"Toggle_{keycode}";
+
+        toggle.onValueChanged = new Toggle.ToggleEvent();
         toggle.onValueChanged.AddListener(onValueChanged);
         toggle.isOn = defaultValue;
 
