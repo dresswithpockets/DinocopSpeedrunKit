@@ -26,6 +26,7 @@ Adds some accessibility options to the main menu settings:
 - Automatically pick up items by aiming at them
   - picks up collectibles like money, mold, cans - only when the player would normally be able to pick them up.
 - Automatically interact by holding down a button/key
+  - To change the key, open `path/to/game/BepInEx/config/DinocopSpeedrunKit.Accessibility.cfg` in Notepad or another text editor. It can be any of the KeyCodes [listed here](https://docs.unity3d.com/6000.0/Documentation/ScriptReference/KeyCode.html)
 
 ## DinocopSpeedrunKit.Autosplit
 
