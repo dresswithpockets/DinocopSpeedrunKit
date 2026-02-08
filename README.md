@@ -6,9 +6,11 @@ Dinocop mods to make speedrunning more accessible.
 
 In order to use the kit, you must have a Bleeding Edge version of BepInEx:
 
-1. Download & install [BepInEx 6.x](https://docs.bepinex.dev/master/articles/user_guide/installation/index.html)
-    - You'll want to download a "[Bleeding edge build](https://builds.bepinex.dev/projects/bepinex_be)" of BepInEx. This
-      kit has been tested on build #753, so use that one if youre not sure.
+1. Download & install BepInEx Bleeding Edge for Unity Mono
+    - [Windows](https://builds.bepinex.dev/projects/bepinex_be/753/BepInEx-Unity.Mono-win-x64-6.0.0-be.753%2B0d275a4.zip)
+    - [Linux](https://builds.bepinex.dev/projects/bepinex_be/753/BepInEx-Unity.Mono-linux-x64-6.0.0-be.753%2B0d275a4.zip)
+    - [MacOS](https://builds.bepinex.dev/projects/bepinex_be/753/BepInEx-Unity.Mono-macos-x64-6.0.0-be.753%2B0d275a4.zip)
+1. Follow the [installation instructions for BepInEx](https://docs.bepinex.dev/master/articles/user_guide/installation/index.html)
 1. Run the game once to ensure BepInEx generates configs. Close it immediately.
 1. Download [the plugin](https://github.com/dresswithpockets/DinocopSpeedrunKit/releases) and place it in `path/to/game/BepInEx/plugins`
 1. Run the game once more to ensure the kit's configs are generated. Close it immediately.
